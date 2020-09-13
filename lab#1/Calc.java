@@ -22,10 +22,12 @@ public class Calc {
                 return aD * cD;
             }
             case "/": {
+                if(aD == 0 || cD == 0)
+                    throw new IllegalArgumentException("Делить на 0 нельзя!!");
                 return aD / cD;
             }
             default: {
-                return 0;
+                throw new IllegalArgumentException("Неверный оператор!");
             }
         }
     }
