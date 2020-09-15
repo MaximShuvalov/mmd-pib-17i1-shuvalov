@@ -11,7 +11,7 @@ public class Calc {
     }
 
     public static double Calculate(String a, String b, String c) {
-        double eq = 1e-12;
+        double eps = 1e-12;
         double aD = Double.parseDouble(a);
         double cD = Double.parseDouble(c);
         switch (b.charAt(0)) {
@@ -25,7 +25,7 @@ public class Calc {
                 return aD * cD;
             }
             case '/': {
-                if (cD < eq)
+                if (cD > - eps && cd < eps )
                     throw new IllegalArgumentException("Делить на 0 нельзя!!");
                 return aD / cD;
             }
