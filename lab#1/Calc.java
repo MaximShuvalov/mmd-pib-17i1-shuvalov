@@ -25,7 +25,7 @@ public class Calc {
                 return aD * cD;
             }
             case '/': {
-                if (cD > - eps && cd < eps )
+                if (cD < eps)
                     throw new IllegalArgumentException("Делить на 0 нельзя!!");
                 return aD / cD;
             }
