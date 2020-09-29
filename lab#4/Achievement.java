@@ -30,7 +30,7 @@ public class Achievement {
     }
 
     @Override
-    public String ToString() {
+    public String toString() {
         return "Ачивка с названием - " + name + " и описанием - " + note;
     }
 }
