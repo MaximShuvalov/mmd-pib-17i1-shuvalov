@@ -3,9 +3,7 @@ public class Achievement {
     private String name;
     private String note = "Описание отсутствует";
 
-    Achievement(Achievements ach) {
-        achievement = ach;
-    }
+    public Achievement(Achievements ach) { achievement = ach;}
 
     public String GetName() {
         GetRusName();
