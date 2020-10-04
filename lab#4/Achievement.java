@@ -29,6 +29,6 @@ public class Achievement {
 
     @Override
     public String toString() {
-        return "Ачивка с названием - " + name + " и описанием - " + note;
+        return "Ачивка с названием - " + GetName() + " и описанием - " + note;
     }
 }
