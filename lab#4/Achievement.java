@@ -3,16 +3,22 @@ public class Achievement {
     private String name;
     private String note = "Описание отсутствует";
 
-    public Achievement(Achievements ach) { achievement = ach;}
+    public Achievement(Achievements ach) {
+        achievement = ach;
+    }
 
     public String GetName() {
         GetRusName();
         return name;
     }
 
-    public void SetNote(String note) { this.note = note;}
+    public void SetNote(String note) {
+        this.note = note;
+    }
 
-    public String GetNote() { return note;}
+    public String GetNote() {
+        return note;
+    }
 
     private void GetRusName() {
         switch (achievement) {
@@ -21,6 +27,9 @@ public class Achievement {
                 break;
             case WorseProgrammerOfCourse:
                 name = "Худший программист в группе";
+                break;
+            case BestSportsmenOfCourse:
+                name = "Лучший спортсмен в группе";
                 break;
             default:
                 break;
