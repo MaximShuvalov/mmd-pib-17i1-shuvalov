@@ -31,4 +31,9 @@ public class Direction {
     public List<StudyGroup> getGroups() {
         return _groups;
     }
+
+    @Override
+    public String toString() {
+        return "Направление " + _name;
+    }
 }
