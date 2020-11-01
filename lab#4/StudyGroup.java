@@ -33,8 +33,12 @@ public class StudyGroup {
         _students.remove(student);
     }
 
+    public void deleteStudent(Student student) {
+        _students.remove(student);
+    }
+
     @Override
     public String toString() {
-        return "Р“СЂСѓРїРїР° " + _name + " СЃ РєРѕР»РёС‡РµСЃС‚РІРѕРј СЃС‚СѓРґРµРЅС‚РѕРІ " + _students.size();
+        return "Группа " + _name + " с количеством студентов " + _students.size();
     }
 }

@@ -32,7 +32,7 @@ public class Student implements IHuman {
 
     @Override
     public String toString() {
-        return "РЎС‚СѓРґРµРЅС‚, " + name + ", РёРјРµРµС‚ " + achievements.size() + " РґРѕСЃС‚РёР¶РµРЅРёР№";
+        return "Студент, " + name + ", имеет " + achievements.size() + " достижений";
     }
 
 }

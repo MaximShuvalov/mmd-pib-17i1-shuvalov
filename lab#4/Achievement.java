@@ -1,10 +1,11 @@
 public class Achievement {
     private Achievements achievement;
     private String name;
-    private String note = "РћРїРёСЃР°РЅРёРµ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚";
+    private String _note;
 
-    public Achievement(Achievements ach) {
+    public Achievement(Achievements ach, String note) {
         achievement = ach;
+        _note = note;
     }
 
     public String GetName() {
@@ -12,24 +13,20 @@ public class Achievement {
         return name;
     }
 
-    public void SetNote(String note) {
-        this.note = note;
-    }
-
     public String GetNote() {
-        return note;
+        return _note;
     }
 
     private void GetRusName() {
         switch (achievement) {
             case BestProgrammerOfGroup:
-                name = "Р›СѓС‡С€РёР№ РїСЂРѕРіСЂР°РјРјРёСЃС‚ РІ РіСЂСѓРїРїРµ";
+                name = "Лучший программист в группе";
                 break;
             case WorseProgrammerOfCourse:
-                name = "РҐСѓРґС€РёР№ РїСЂРѕРіСЂР°РјРјРёСЃС‚ РІ РіСЂСѓРїРїРµ";
+                name = "Худший программист в группе";
                 break;
             case BestSportsmenOfCourse:
-                name = "Р›СѓС‡С€РёР№ СЃРїРѕСЂС‚СЃРјРµРЅ РІ РіСЂСѓРїРїРµ";
+                name = "Лучший спортсмен в группе";
                 break;
             default:
                 break;
@@ -38,6 +35,6 @@ public class Achievement {
 
     @Override
     public String toString() {
-        return "РђС‡РёРІРєР° СЃ РЅР°Р·РІР°РЅРёРµРј - " + GetName() + " Рё РѕРїРёСЃР°РЅРёРµРј - " + note;
+        return "Ачивка с названием - " + GetName() + " и описанием - " + _note;
     }
 }

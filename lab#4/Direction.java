@@ -28,12 +28,16 @@ public class Direction {
         _groups.remove(group);
     }
 
+    public void deleteGroup(StudyGroup group) {
+        _groups.remove(group);
+    }
+
     public List<StudyGroup> getGroups() {
         return _groups;
     }
 
     @Override
     public String toString() {
-        return "РќР°РїСЂР°РІР»РµРЅРёРµ " + _name;
+        return "Направление " + _name;
     }
 }

@@ -34,6 +34,6 @@ public class Faculty {
 
     @Override
     public String toString() {
-        return "Р¤Р°РєСѓР»СЊС‚РµС‚ " + _name;
+        return "Факультет " + _name;
     }
 }
