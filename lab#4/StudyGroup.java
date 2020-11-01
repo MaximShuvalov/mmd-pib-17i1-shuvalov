@@ -28,6 +28,11 @@ public class StudyGroup {
         return _students;
     }
 
+    public void deleteStudent(String name) {
+        Student student = getStudent(name);
+        _students.remove(student);
+    }
+
     @Override
     public String toString() {
         return "Группа " + _name + " с количеством студентов " + _students.size();
