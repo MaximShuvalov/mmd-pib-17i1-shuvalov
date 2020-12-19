@@ -120,14 +120,13 @@ public class Program {
 
     private static void PrintTheMostVoraciousAnimal(Nursery nursery) {
         int i, j, step, tmp;
-        int n = nursery.Aviarys.size();
-
+        
         ArrayList<Animal> animals = new ArrayList<>();
 
         for (Aviary item : nursery.Aviarys)
             animals.addAll(item.Animals);
          var anArray = animals.toArray(new Animal[animals.size()]);
-
+         int n = anArray.length;
 
         for (step = n / 2; step > 0; step /= 2) {
             for (i = step; i < n; i++) {
