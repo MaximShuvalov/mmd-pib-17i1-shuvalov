@@ -116,6 +116,7 @@ public class Program {
     }
 
     private static void PrintTheMostVoraciousAnimal(Nursery nursery) {
+
         int i, j, step, tmp;
         
         ArrayList<Animal> animals = new ArrayList<>();
@@ -144,5 +145,9 @@ public class Program {
 
         System.out.println("Самое прожорливое животное " + anArray[animals.size() - 1].Name);
         System.out.println("------------------------------------------------");
+    }
+
+    private static void PrintAnimalOfType(TypesAnimal typesAnimal, ArrayList<Aviary> aviaries){
+        //todo mshuvalov: добавить реализацию
     }
 }
