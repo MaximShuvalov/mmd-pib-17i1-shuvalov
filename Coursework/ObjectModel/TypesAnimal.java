@@ -1,3 +1,5 @@
+package ObjectModel;
+
 public enum TypesAnimal {
     Dog,
     Cat,

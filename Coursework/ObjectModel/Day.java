@@ -1,3 +1,5 @@
+package ObjectModel;
+
 public class Day {
     public String Date;
     public int CountPackFood;
