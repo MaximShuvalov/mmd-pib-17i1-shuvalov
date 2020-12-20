@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import ObjectModel.*;
+
 public class Program {
 
     private static ArrayList<Day> days1 = new ArrayList<>();
@@ -15,16 +17,23 @@ public class Program {
     private static ArrayList<Aviary> aviarys = new ArrayList<>();
 
     private static Nursery nursery;
+    private static AnalizatorNursery analizatorNursery = new AnalizatorNursery();
+    private static ReportBuilder reportBuilder = new ReportBuilder();
 
-    public static void main(String[] args) {
-        CreateData();
+    public static void main(String[] args) throws Exception {
+        createData();
         nursery = new Nursery("Питомник №1", aviarys);
 
-        PrintTheMostVoraciousAviarys(nursery);
-        PrintTheMostVoraciousAnimal(nursery);
+        var mostVoraciousAviarys = analizatorNursery.getTheMostVoraciousAviarys(nursery);
+        reportBuilder.printTheMostVoraciousAviarys(mostVoraciousAviarys);
+
+        var mostVoraciousAnimal= analizatorNursery.getTheMostVoraciousAnimal(nursery);
+        reportBuilder.printTheMostVoraciousAnimal(mostVoraciousAnimal);
+
+        reportBuilder.printAnimalOfType(nursery.Aviarys);
     }
 
-    private static void CreateData() {
+    private static void createData() {
 
         days1.add(new Day("12.12.2020", 3));
         days1.add(new Day("13.12.2020", 2));
@@ -75,79 +84,5 @@ public class Program {
         aviarys.add(new Aviary(animals2, 2));
         aviarys.add(new Aviary(animals3, 3));
 
-    }
-
-    private static void PrintTheMostVoraciousAviarys(Nursery nursery) {
-        int i, j, step, tmp;
-        int n = nursery.Aviarys.size();
-        Aviary[] avArray = nursery.Aviarys.toArray(new Aviary[n]);
-
-        for (step = n / 2; step > 0; step /= 2) {
-            for (i = step; i < n; i++) {
-                tmp = avArray[i].Animals.stream()
-                        .mapToInt(a -> a.Days.stream().mapToInt(b -> b.CountPackFood).sum()).sum();
-
-                for (j = i; j >= step; j -= step) {
-
-                    int tmp2 = avArray[j-step].Animals.stream()
-                            .mapToInt(a -> a.Days.stream().mapToInt(b -> b.CountPackFood).sum()).sum();
-
-                    if (tmp < tmp2)
-                        avArray[j] = avArray[j - step];
-                    else
-                        break;
-                }
-                avArray[j] = avArray[i];
-            }
-        }
-
-        for (Aviary item : nursery.Aviarys) {
-            System.out.println("Номер вальера " + item.Number);
-            System.out.println("------------------------------------------------");
-            for (Animal animal : item.Animals) {
-                System.out.println(animal.Name + " съел " + animal.Days.stream().mapToInt(a -> a.CountPackFood).sum()
-                        + " пачек корма");
-            }
-            System.out.println("------------------------------------------------");
-        }
-
-        System.out.println("Самое прожорливый вальер " + avArray[nursery.Aviarys.size() - 1].Number);
-        System.out.println("------------------------------------------------");
-    }
-
-    private static void PrintTheMostVoraciousAnimal(Nursery nursery) {
-
-        int i, j, step, tmp;
-        
-        ArrayList<Animal> animals = new ArrayList<>();
-
-        for (Aviary item : nursery.Aviarys)
-            animals.addAll(item.Animals);
-         var anArray = animals.toArray(new Animal[animals.size()]);
-         int n = anArray.length;
-
-        for (step = n / 2; step > 0; step /= 2) {
-            for (i = step; i < n; i++) {
-                tmp = anArray[i].Days.stream().mapToInt(b -> b.CountPackFood).sum();
-
-                for (j = i; j >= step; j -= step) {
-
-                    int tmp2 = anArray[j-step].Days.stream().mapToInt(b -> b.CountPackFood).sum();
-
-                    if (tmp < tmp2)
-                    anArray[j] = anArray[j - step];
-                    else
-                        break;
-                }
-                anArray[j] = anArray[i];
-            }
-        }
-
-        System.out.println("Самое прожорливое животное " + anArray[animals.size() - 1].Name);
-        System.out.println("------------------------------------------------");
-    }
-
-    private static void PrintAnimalOfType(TypesAnimal typesAnimal, ArrayList<Aviary> aviaries){
-        //todo mshuvalov: добавить реализацию
     }
 }
