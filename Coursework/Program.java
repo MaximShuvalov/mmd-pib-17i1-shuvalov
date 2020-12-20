@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import ObjectModel.*;
 
 public class Program {
@@ -19,18 +18,21 @@ public class Program {
     private static Nursery nursery;
     private static AnalizatorNursery analizatorNursery = new AnalizatorNursery();
     private static ReportBuilder reportBuilder = new ReportBuilder();
+    private static UserLogic userLogic = new UserLogic();
 
     public static void main(String[] args) throws Exception {
-        createData();
-        nursery = new Nursery("Питомник №1", aviarys);
+        // createData();
+        // nursery = new Nursery("Питомник №1", aviarys);
 
-        var mostVoraciousAviarys = analizatorNursery.getTheMostVoraciousAviarys(nursery);
-        reportBuilder.printTheMostVoraciousAviarys(mostVoraciousAviarys);
+        // var mostVoraciousAviarys = analizatorNursery.getTheMostVoraciousAviarys(nursery);
+        // reportBuilder.printTheMostVoraciousAviarys(mostVoraciousAviarys);
 
-        var mostVoraciousAnimal= analizatorNursery.getTheMostVoraciousAnimal(nursery);
-        reportBuilder.printTheMostVoraciousAnimal(mostVoraciousAnimal);
+        // var mostVoraciousAnimal= analizatorNursery.getTheMostVoraciousAnimal(nursery);
+        // reportBuilder.printTheMostVoraciousAnimal(mostVoraciousAnimal);
 
-        reportBuilder.printAnimalOfType(nursery.Aviarys);
+        // reportBuilder.printAnimalOfType(nursery.Aviarys);
+
+        userLogic.runUserActionMenu();
     }
 
     private static void createData() {
