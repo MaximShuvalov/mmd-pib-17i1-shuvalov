@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import ObjectModel.*;
 
 public class AnalizatorNursery {
@@ -59,6 +58,25 @@ public class AnalizatorNursery {
             }
         }
         return anArray[animals.size() - 1];
+    }
+
+    public Animal getAnimalByName(Nursery nursery, String animalName) throws Exception {
+
+        ArrayList<Animal> animals = new ArrayList<>();
+
+        for (Aviary item : nursery.Aviarys)
+            animals.addAll(item.Animals);
+
+        Animal animal = null;
+
+        for (Animal anim : animals) {
+            if (anim.Name.equals(animalName))
+                animal = anim;
+        }
+
+        if (animal == null)
+            throw new Exception("Животного с указанным именем не существует");
+        return animal;
     }
 
 }
