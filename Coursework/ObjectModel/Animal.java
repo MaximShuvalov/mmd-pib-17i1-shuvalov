@@ -1,11 +1,15 @@
 package ObjectModel;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Animal {
+public class Animal implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+
     public TypesAnimal Type;
 
     public String Name;
@@ -35,5 +39,10 @@ public class Animal {
 
     public static int compareByCountPackFood(Animal a, Animal b){
         return (a.getCountEatenPackFood() - b.getCountEatenPackFood());
+    }
+
+    @Override
+    public String toString(){
+        return Name;
     }
 }

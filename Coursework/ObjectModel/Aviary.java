@@ -1,8 +1,11 @@
 package ObjectModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Aviary{
+public class Aviary implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
     public int Number;
     public ArrayList<Animal> Animals;
 
@@ -17,5 +20,10 @@ public class Aviary{
 
     public static int compareByCountPackFood(Aviary a, Aviary b){
         return (a.getCountEatenPackFoodAnimals() - b.getCountEatenPackFoodAnimals());
+    }
+
+    @Override
+    public String toString(){
+        return "Вальер № " + Number;
     }
 }
