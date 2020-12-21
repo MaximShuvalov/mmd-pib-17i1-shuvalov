@@ -1,7 +1,9 @@
+package DataSources;
+
 import java.util.ArrayList;
 import ObjectModel.*;
 
-public class DataBuilder {
+public class CodeSource implements DataSource {
     private static ArrayList<Day> days1 = new ArrayList<>();
     private static ArrayList<Day> days2 = new ArrayList<>();
     private static ArrayList<Day> days3 = new ArrayList<>();
@@ -13,13 +15,13 @@ public class DataBuilder {
     private static ArrayList<Aviary> aviarys = new ArrayList<>();
     private static Nursery nursery;
 
-    public static Nursery getNursery(){
+    public Nursery getNursery() {
         createData();
         nursery = new Nursery("Питомник №1", aviarys);
         return nursery;
     }
 
-    private static void createData() {
+    private void createData() {
 
         days1.add(new Day("12.12.2020", 3));
         days1.add(new Day("13.12.2020", 2));

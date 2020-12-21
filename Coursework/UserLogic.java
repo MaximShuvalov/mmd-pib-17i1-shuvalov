@@ -3,12 +3,16 @@ import ObjectModel.*;
 
 public class UserLogic {
 
-    private Nursery nursery = DataBuilder.getNursery();
+    private Nursery nursery;
     private AnalizatorNursery analizatorNursery = new AnalizatorNursery();
     private ReportBuilder reportBuilder = new ReportBuilder();
     private NurseryHandler nurseryHandler = new NurseryHandler();
     private Scanner userInput = new Scanner(System.in);
     private boolean exit = false;
+
+    public UserLogic(Nursery nursery){
+        this.nursery = nursery;
+    }
 
     public void runUserActionMenu() throws Exception {
         while (!exit) {
