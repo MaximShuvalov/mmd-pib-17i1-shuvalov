@@ -38,7 +38,9 @@ public class UserLogic {
         System.out.println("4 - Показать самый голодный вальер");
         System.out.println("5 - Показать самое голодное животное");
         System.out.println("6 - Сохранить текущее состояние");
-        System.out.println("7 - Выход");
+        System.out.println("7 - Добавить животное");
+        System.out.println("8 - Покормить животное");
+        System.out.println("9 - Выход");
         System.out.println("--------------------------------------------by shuvalov m 2020--------------------------");
         System.out.println();
     }
@@ -64,10 +66,42 @@ public class UserLogic {
                 saveStateNursery();
                 break;
             case 7:
+                addNewAnimal();
+                break;
+            case 8:
+                feedAnimal();
+                break;
+            case 9:
                 exit();
                 break;
             default:
                 System.out.println("Неизвестное действие!");
+        }
+    }
+
+    private void addNewAnimal() throws NumberFormatException, Exception {
+        System.out.println("Введите имя животного");
+        String nameAnimal = userInput.nextLine();
+        System.out.println("Введите тип животного: 1 - Птица, 2 - Собака, 3 - Кот");
+        TypesAnimal animalType = getTypeAnimal(Integer.parseInt(userInput.nextLine()));
+        System.out.println("Введите номер вальера");
+        int avNumber = Integer.parseInt(userInput.nextLine());
+        Animal animal = new Animal(nameAnimal, animalType);
+        nurseryHandler.addAnimal(animal, avNumber, nursery);
+
+        System.out.println("------------------------" + animal.Name + " успешно добавлен--------------------------------------------");
+    }
+
+    private TypesAnimal getTypeAnimal(int i) throws Exception {
+        switch(i){
+            case 1:
+            return TypesAnimal.Bird;
+            case 2:
+            return TypesAnimal.Dog;
+            case 3:
+            return TypesAnimal.Cat;
+            default:
+            throw new Exception("Проверьте введенные данные");
         }
     }
 
@@ -138,36 +172,35 @@ public class UserLogic {
     }
 
     private void runProgressBar() throws InterruptedException {
-        System.out.println("|==              |\r");
+        System.out.print("|==                  |\r");
         Thread.sleep(500);
-        System.out.println("|====            |\r");
+        System.out.print("|====                |\r");
         Thread.sleep(500);
-        System.out.println("|======          |\r");
+        System.out.print("|======              |\r");
         Thread.sleep(500);
-        System.out.println("|========        |\r");
+        System.out.print("|========            |\r");
         Thread.sleep(500);
-        System.out.println("|==========      |\r");
+        System.out.print("|==========          |\r");
         Thread.sleep(500);
-        System.out.println("|============    |\r");
+        System.out.print("|============        |\r");
         Thread.sleep(500);
-        System.out.println("|==============  |\r");
+        System.out.print("|================    |\r");
         Thread.sleep(500);
-        System.out.println("|================|\r");
+        System.out.print("|====================|\r");
     }
 
     private void feedAnimal() throws Exception {
         try {
             System.out.println();
-            System.out.println("������� ��� ���������");
-            var nameAnimal = userInput.next();
+            System.out.println("Введите имя животного");
+            var nameAnimal = userInput.nextLine();
             var animal = analizatorNursery.getAnimalByName(nursery, nameAnimal);
-            System.out.println("������� ���������� ����� �����");
-            var countPackFood = userInput.nextInt();
+            System.out.println("Сколько пачек корма дать?");
+            var countPackFood = Integer.parseInt(userInput.nextLine());
             nurseryHandler.feedAnimal(animal, countPackFood);
-            System.out.println(nameAnimal + " ������� ���������");
-            String line1 = userInput.nextLine();
+            System.out.println(nameAnimal + " накормлен(а)");
         } catch (Exception ex) {
-            System.out.println("��������� ������ ��� ��������� ���������");
+            System.out.println("Ошибка при кормлении животного (вам откусили руку)");
             System.out.println(ex.getMessage());
             exit();
         }

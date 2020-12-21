@@ -22,6 +22,12 @@ public class Animal implements Serializable {
         Days = days;
     }
 
+    public Animal(String name, TypesAnimal type) {
+        Type = type;
+        Name = name;
+        Days = new ArrayList<Day>();
+    }
+
     public void feedAnimal(int countPackFood) {
         var date = getCurrentDateString();
         Days.add(new Day(date, countPackFood));

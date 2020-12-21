@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import ObjectModel.*;
 
@@ -61,8 +62,13 @@ public class AnalizatorNursery {
         }
 
         if (animal == null)
-            throw new Exception("Животного с указанным именем не существует");
+            throw new Exception("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
         return animal;
+    }
+
+    public Aviary getAviarylByNumber(Nursery nursery, int number) throws Exception {
+
+        return nursery.Aviarys.stream().filter(x -> x.Number == number).collect(Collectors.toList()).get(0);
     }
 
 }

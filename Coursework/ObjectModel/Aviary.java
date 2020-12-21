@@ -14,6 +14,10 @@ public class Aviary implements Serializable{
         Number = number;
     }
 
+    public void addAnimal(Animal animal){
+        Animals.add(animal);
+    }
+
     private int getCountEatenPackFoodAnimals(){
         return Animals.stream().mapToInt(p-> p.getCountEatenPackFood()).sum();
     }
