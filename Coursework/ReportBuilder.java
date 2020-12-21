@@ -20,11 +20,37 @@ public class ReportBuilder {
         System.out.println();
     }
 
+    public void printTheMostHungryAviarys(Aviary av){
+
+        System.out.println("--------------------------Отчет по самому голодному вальеру----------------------------------");
+        System.out.println();
+        System.out.println("Самый голодный вальер " + av.Number);
+        System.out.println();
+
+        for (Animal animal : av.Animals) {
+            System.out.println(animal.Name + " съел " + animal.Days.stream().mapToInt(a -> a.CountPackFood).sum()
+                    + " пачек корма");
+        }
+        System.out.println();
+        System.out.println("--------------------------Конец отчета------------------------------------------------------------");
+        System.out.println();
+    }
+
     public void printTheMostVoraciousAnimal(Animal animal) {
 
         System.out.println("--------------------------Отчет по самому прожорливому животному----------------------------------");
         System.out.println();
         System.out.println("Самое прожорливое животное " + animal.Name);
+        System.out.println();
+        System.out.println("--------------------------Конец отчета------------------------------------------------------------");
+        System.out.println();
+    }
+
+    public void printTheMostHungryAnimal(Animal animal) {
+
+        System.out.println("--------------------------Отчет по самому голодному животному----------------------------------");
+        System.out.println();
+        System.out.println("Самое голодное животное " + animal.Name);
         System.out.println();
         System.out.println("--------------------------Конец отчета------------------------------------------------------------");
         System.out.println();

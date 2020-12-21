@@ -28,4 +28,12 @@ public class Animal {
         Date date = new Date();
         return dateFormat.format(date);
     }
+
+    public int getCountEatenPackFood(){
+        return Days.stream().mapToInt(p-> p.CountPackFood).sum();
+    }
+
+    public static int compareByCountPackFood(Animal a, Animal b){
+        return (a.getCountEatenPackFood() - b.getCountEatenPackFood());
+    }
 }

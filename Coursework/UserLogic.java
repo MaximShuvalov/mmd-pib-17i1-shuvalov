@@ -25,8 +25,9 @@ public class UserLogic {
         System.out.println("1 - Показать всех животных в питомнике");
         System.out.println("2 - Показать самый прожорливый вальер");
         System.out.println("3 - Показать самое прожорливое животное");
-        System.out.println("4 - Покормить животное");
-        System.out.println("5 - Выход");
+        System.out.println("4 - Показать самый голодный вальер");
+        System.out.println("5 - Показать самое голодное животное");
+        System.out.println("6 - Выход");
         System.out.println("--------------------------------------------by shuvalov m 2020--------------------------");
         System.out.println();
     }
@@ -39,9 +40,11 @@ public class UserLogic {
             break;
             case 3: printTheMostVoraciousAnimal();
             break;
-            case 4: feedAnimal();
+            case 4: printTheMostHungryAviarys();
             break;
-            case 5: exit();
+            case 5: printTheMostHungryAnimal();
+            break;
+            case 6: exit();
             break;
             default:
                 System.out.println("Такого действия не существует!");
@@ -69,6 +72,28 @@ public class UserLogic {
         try {
             var mostVoraciousAviarys = analizatorNursery.getTheMostVoraciousAviarys(nursery);
             reportBuilder.printTheMostVoraciousAviarys(mostVoraciousAviarys);
+        } catch (Exception ex) {
+            System.out.println("Произошла ошибка при составлении отчета");
+            System.out.println(ex.getMessage());
+            exit();
+        }
+    }
+
+    private void printTheMostHungryAviarys() throws InterruptedException {
+        try {
+            var mostHungryAviarys = analizatorNursery.getTheMostHungryAviarys(nursery);
+            reportBuilder.printTheMostHungryAviarys(mostHungryAviarys);
+        } catch (Exception ex) {
+            System.out.println("Произошла ошибка при составлении отчета");
+            System.out.println(ex.getMessage());
+            exit();
+        }
+    }
+
+    private void printTheMostHungryAnimal() throws InterruptedException {
+        try {
+            var mostHungryAnimal= analizatorNursery.getTheMostHungryAnimal(nursery);
+            reportBuilder.printTheMostHungryAnimal(mostHungryAnimal);
         } catch (Exception ex) {
             System.out.println("Произошла ошибка при составлении отчета");
             System.out.println(ex.getMessage());

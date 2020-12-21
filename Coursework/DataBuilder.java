@@ -61,10 +61,10 @@ public class DataBuilder {
         animals2.add(new Animal("Bird3", TypesAnimal.Bird, days3));
         animals2.add(new Animal("Bird4", TypesAnimal.Bird, days4));
 
-        animals3.add(new Animal("Cat1", TypesAnimal.Cat, days4));
+        animals3.add(new Animal("Cat1", TypesAnimal.Cat, days2));
         animals3.add(new Animal("Cat2", TypesAnimal.Cat, days2));
-        animals3.add(new Animal("Cat3", TypesAnimal.Cat, days1));
-        animals3.add(new Animal("Cat4", TypesAnimal.Cat, days3));
+        animals3.add(new Animal("Cat3", TypesAnimal.Cat, days2));
+        animals3.add(new Animal("Cat4", TypesAnimal.Cat, days2));
 
         aviarys.add(new Aviary(animals1, 1));
         aviarys.add(new Aviary(animals2, 2));
