@@ -13,10 +13,9 @@ public class UserLogic {
     public void runUserActionMenu() throws Exception {
         while (!exit) {
             printMenu();
-            int punktMenu = userInput.nextInt();
+            int punktMenu = Integer.parseInt(userInput.nextLine());
             menuChoice(punktMenu);
         }
-        userInput.close();
     }
 
     private void printMenu() {
@@ -106,22 +105,20 @@ public class UserLogic {
     }
 
     private void feedAnimal() throws Exception {
-        Scanner userInput1 = new Scanner(System.in, "windows-1251");
         try {
             System.out.println();
             System.out.println("Введите имя животного");
-            var nameAnimal = userInput1.next();
+            var nameAnimal = userInput.next();
             var animal = analizatorNursery.getAnimalByName(nursery, nameAnimal);
             System.out.println("Введите количество пачек корма");
-            var countPackFood = userInput1.nextInt();
+            var countPackFood = userInput.nextInt();
             nurseryHandler.feedAnimal(animal, countPackFood);
             System.out.println(nameAnimal + " успешно накормлен");
+            String line1 = userInput.nextLine();
         } catch (Exception ex) {
             System.out.println("Произошла ошибка при кормлении животного");
             System.out.println(ex.getMessage());
             exit();
-        } finally {
-            userInput1.close();
         }
     }
 }
