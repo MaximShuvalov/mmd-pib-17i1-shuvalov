@@ -1,7 +1,8 @@
-﻿import java.util.ArrayList;
+import java.util.ArrayList;
 
 import ObjectModel.*;
 
+//Построитель отчетов
 public class ReportBuilder {
     
     public void printTheMostVoraciousAviarys(Aviary av){

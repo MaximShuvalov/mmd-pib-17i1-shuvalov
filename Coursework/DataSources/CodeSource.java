@@ -17,7 +17,7 @@ public class CodeSource implements DataSource {
 
     public Nursery getNursery() {
         createData();
-        nursery = new Nursery("Питомник №1", aviarys);
+        nursery = new Nursery("РџРёС‚РѕРјРЅРёРє 1", aviarys);
         return nursery;
     }
 

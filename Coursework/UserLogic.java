@@ -79,6 +79,7 @@ public class UserLogic {
         }
     }
 
+    //Добавление нового питомника
     private void addNewAnimal() throws NumberFormatException, Exception {
         System.out.println("Введите имя животного");
         String nameAnimal = userInput.nextLine();
@@ -105,6 +106,7 @@ public class UserLogic {
         }
     }
 
+    //Сохранение состояния питомника
     private void saveStateNursery() throws InterruptedException, FileNotFoundException, IOException {
         serializator.serializeNursery(nursery);
         System.out.println("Сохранение успешно завершено!");
@@ -118,6 +120,7 @@ public class UserLogic {
         exit = true;
     }
 
+    //Вывод всех животных
     private void printAnimalOfType() throws Exception {
         try {
             reportBuilder.printAnimalOfType(nursery.Aviarys);
@@ -128,6 +131,7 @@ public class UserLogic {
         }
     }
 
+    //Вывод самого прожорливого вальера
     private void printTheMostVoraciousAviarys() throws InterruptedException {
         try {
             var mostVoraciousAviarys = analizatorNursery.getTheMostVoraciousAviarys(nursery);
@@ -139,6 +143,7 @@ public class UserLogic {
         }
     }
 
+    //Вывод самого голодного вальера
     private void printTheMostHungryAviarys() throws InterruptedException {
         try {
             var mostHungryAviarys = analizatorNursery.getTheMostHungryAviarys(nursery);
@@ -150,6 +155,7 @@ public class UserLogic {
         }
     }
 
+    //Вывод самого голодного животного
     private void printTheMostHungryAnimal() throws InterruptedException {
         try {
             var mostHungryAnimal= analizatorNursery.getTheMostHungryAnimal(nursery);
@@ -161,6 +167,7 @@ public class UserLogic {
         }
     }
 
+    //Вывод самого прожорливого животного
     private void printTheMostVoraciousAnimal() throws InterruptedException {
         try {
             var mostVoraciousAnimal = analizatorNursery.getTheMostVoraciousAnimal(nursery);
@@ -189,6 +196,7 @@ public class UserLogic {
         System.out.print("|====================|\r");
     }
 
+    //Покормить животного
     private void feedAnimal() throws Exception {
         try {
             System.out.println();

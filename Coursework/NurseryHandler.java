@@ -1,6 +1,7 @@
 import ObjectModel.Animal;
 import ObjectModel.Nursery;
 
+//Обработчик питомника
 public class NurseryHandler {
 
     private AnalizatorNursery analizatorNursery = new AnalizatorNursery();
