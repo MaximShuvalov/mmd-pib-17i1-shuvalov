@@ -1,17 +1,23 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+
 import ObjectModel.*;
+import Serializators.Serializator;
 
 public class UserLogic {
 
     private Nursery nursery;
     private AnalizatorNursery analizatorNursery = new AnalizatorNursery();
+    private Serializator serializator;
     private ReportBuilder reportBuilder = new ReportBuilder();
     private NurseryHandler nurseryHandler = new NurseryHandler();
     private Scanner userInput = new Scanner(System.in);
     private boolean exit = false;
 
-    public UserLogic(Nursery nursery){
+    public UserLogic(Nursery nursery, Serializator serializator) throws Exception {
         this.nursery = nursery;
+        this.serializator = serializator;
     }
 
     public void runUserActionMenu() throws Exception {
@@ -24,39 +30,55 @@ public class UserLogic {
 
     private void printMenu() {
         System.out.println();
-        System.out.println("---------------------------------------ИС Питомник--------------------------------------");
-        System.out.println("Добро пожаловать, пожалуйста, выберите необходимое действие");
-        System.out.println("1 - Показать всех животных в питомнике");
-        System.out.println("2 - Показать самый прожорливый вальер");
-        System.out.println("3 - Показать самое прожорливое животное");
-        System.out.println("4 - Показать самый голодный вальер");
-        System.out.println("5 - Показать самое голодное животное");
-        System.out.println("6 - Выход");
+        System.out.println("---------------------------------------РРЎ РџРёС‚РѕРјРЅРёРє--------------------------------------");
+        System.out.println("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ, РєРѕС‚РѕСЂРѕРµ С…РѕС‚РёС‚Рµ РІС‹РїРѕР»РЅРёС‚СЊ");
+        System.out.println("1 - РџРѕСЃРјРѕС‚СЂРµС‚СЊ РІСЃРµС… Р¶РёРІРѕС‚РЅС‹С…");
+        System.out.println("2 - РџРѕРєР°Р·Р°С‚СЊ СЃР°РјС‹Р№ РїСЂРѕР¶РѕСЂР»РёРІС‹Р№ РІР°Р»СЊРµСЂ");
+        System.out.println("3 - РџРѕРєР°Р·Р°С‚СЊ СЃР°РјРѕРµ РїСЂРѕР¶РѕСЂР»РёРІРѕРµ Р¶РёРІРѕС‚РЅРѕРµ");
+        System.out.println("4 - РџРѕРєР°Р·Р°С‚СЊ СЃР°РјС‹Р№ РіРѕР»РѕРґРЅС‹Р№ РІР°Р»СЊРµСЂ");
+        System.out.println("5 - РџРѕРєР°Р·Р°С‚СЊ СЃР°РјРѕРµ РіРѕР»РѕРґРЅРѕРµ Р¶РёРІРѕС‚РЅРѕРµ");
+        System.out.println("6 - РЎРѕС…СЂР°РЅРёС‚СЊ С‚РµРєСѓС‰РµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ");
+        System.out.println("7 - Р’С‹С…РѕРґ");
         System.out.println("--------------------------------------------by shuvalov m 2020--------------------------");
         System.out.println();
     }
 
     private void menuChoice(int numMenu) throws Exception {
         switch (numMenu) {
-            case 1 : printAnimalOfType();
-            break;
-            case 2 : printTheMostVoraciousAviarys();
-            break;
-            case 3: printTheMostVoraciousAnimal();
-            break;
-            case 4: printTheMostHungryAviarys();
-            break;
-            case 5: printTheMostHungryAnimal();
-            break;
-            case 6: exit();
-            break;
+            case 1:
+                printAnimalOfType();
+                break;
+            case 2:
+                printTheMostVoraciousAviarys();
+                break;
+            case 3:
+                printTheMostVoraciousAnimal();
+                break;
+            case 4:
+                printTheMostHungryAviarys();
+                break;
+            case 5:
+                printTheMostHungryAnimal();
+                break;
+            case 6:
+                saveStateNursery();
+                break;
+            case 7:
+                exit();
+                break;
             default:
-                System.out.println("Такого действия не существует!");
+                System.out.println("РќРµРёР·РІРµСЃС‚РЅРѕРµ РґРµР№СЃС‚РІРёРµ!");
         }
     }
 
+    private void saveStateNursery() throws InterruptedException, FileNotFoundException, IOException {
+        serializator.serializeNursery(nursery);
+        System.out.println("РЎРѕС…СЂР°РЅРµРЅРёРµ СѓСЃРїРµС€РЅРѕ Р·Р°РІРµСЂС€РµРЅРѕ!");
+        System.out.println();
+    }
+
     private void exit() throws InterruptedException {
-        System.out.println("Всего хорошего! Система завершает работу");
+        System.out.println("Р”Рѕ СЃРІРёРґР°РЅРёСЏ! РЎРёСЃС‚РµРјР° Р·Р°РІРµСЂС€Р°РµС‚ СЂР°Р±РѕС‚Сѓ");
         System.out.println();
         runProgressBar();
         exit = true;
@@ -66,7 +88,7 @@ public class UserLogic {
         try {
             reportBuilder.printAnimalOfType(nursery.Aviarys);
         } catch (Exception ex) {
-            System.out.println("Произошла ошибка при составлении отчета");
+            System.out.println("РћС€РёР±РєР° РїСЂРё С„РѕСЂРјРёСЂРѕРІР°РЅРёРё РѕС‚С‡РµС‚Р°");
             System.out.println(ex.getMessage());
             exit();
         }
@@ -77,7 +99,7 @@ public class UserLogic {
             var mostVoraciousAviarys = analizatorNursery.getTheMostVoraciousAviarys(nursery);
             reportBuilder.printTheMostVoraciousAviarys(mostVoraciousAviarys);
         } catch (Exception ex) {
-            System.out.println("Произошла ошибка при составлении отчета");
+            System.out.println("РћС€РёР±РєР° РїСЂРё С„РѕСЂРјРёСЂРѕРІР°РЅРёРё РѕС‚С‡РµС‚Р°");
             System.out.println(ex.getMessage());
             exit();
         }
@@ -88,7 +110,7 @@ public class UserLogic {
             var mostHungryAviarys = analizatorNursery.getTheMostHungryAviarys(nursery);
             reportBuilder.printTheMostHungryAviarys(mostHungryAviarys);
         } catch (Exception ex) {
-            System.out.println("Произошла ошибка при составлении отчета");
+            System.out.println("РћС€РёР±РєР° РїСЂРё С„РѕСЂРјРёСЂРѕРІР°РЅРёРё РѕС‚С‡РµС‚Р°");
             System.out.println(ex.getMessage());
             exit();
         }
@@ -99,7 +121,7 @@ public class UserLogic {
             var mostHungryAnimal= analizatorNursery.getTheMostHungryAnimal(nursery);
             reportBuilder.printTheMostHungryAnimal(mostHungryAnimal);
         } catch (Exception ex) {
-            System.out.println("Произошла ошибка при составлении отчета");
+            System.out.println("РћС€РёР±РєР° РїСЂРё С„РѕСЂРјРёСЂРѕРІР°РЅРёРё РѕС‚С‡РµС‚Р°");
             System.out.println(ex.getMessage());
             exit();
         }
@@ -110,7 +132,7 @@ public class UserLogic {
             var mostVoraciousAnimal = analizatorNursery.getTheMostVoraciousAnimal(nursery);
             reportBuilder.printTheMostVoraciousAnimal(mostVoraciousAnimal);
         } catch (Exception ex) {
-            System.out.println("Произошла ошибка при составлении отчета");
+            System.out.println("РћС€РёР±РєР° РїСЂРё С„РѕСЂРјРёСЂРѕРІР°РЅРёРё РѕС‚С‡РµС‚Р°");
             exit();
         } 
     }
@@ -136,16 +158,16 @@ public class UserLogic {
     private void feedAnimal() throws Exception {
         try {
             System.out.println();
-            System.out.println("Введите имя животного");
+            System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
             var nameAnimal = userInput.next();
             var animal = analizatorNursery.getAnimalByName(nursery, nameAnimal);
-            System.out.println("Введите количество пачек корма");
+            System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
             var countPackFood = userInput.nextInt();
             nurseryHandler.feedAnimal(animal, countPackFood);
-            System.out.println(nameAnimal + " успешно накормлен");
+            System.out.println(nameAnimal + " пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
             String line1 = userInput.nextLine();
         } catch (Exception ex) {
-            System.out.println("Произошла ошибка при кормлении животного");
+            System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
             System.out.println(ex.getMessage());
             exit();
         }
